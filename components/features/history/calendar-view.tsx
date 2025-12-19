@@ -143,7 +143,7 @@ export function CalendarView() {
               <p className="text-muted-foreground">기록이 없습니다.</p>
             ) : (
               selectedDayLogs
-                .sort((a, b) => new Date(b.recorded_at).getTime() - new Date(a.recorded_at).getTime())
+                .sort((a, b) => new Date(a.recorded_at).getTime() - new Date(b.recorded_at).getTime())
                 .map((log) => (
                   <div key={log.id} className="flex items-center gap-3 p-3 rounded-lg border bg-card">
                     <Droplets

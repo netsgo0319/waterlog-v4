@@ -54,7 +54,7 @@ export async function getIntakeLogsByDate(date: Date) {
             .eq('user_id', FIXED_USER_ID)
             .gte('recorded_at', startOfDay.toISOString())
             .lte('recorded_at', endOfDay.toISOString())
-            .order('recorded_at', { ascending: false });
+            .order('recorded_at', { ascending: true });
 
         if (error) {
             console.error('Error fetching intake logs:', error);
@@ -100,7 +100,7 @@ export async function getIntakeLogsByDateRange(startDate: Date, endDate: Date) {
             .eq('user_id', FIXED_USER_ID)
             .gte('recorded_at', start)
             .lte('recorded_at', end)
-            .order('recorded_at', { ascending: false });
+            .order('recorded_at', { ascending: true });
 
         if (error) {
             console.error('Error fetching intake logs by range:', error);
