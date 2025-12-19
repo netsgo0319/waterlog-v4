@@ -6,11 +6,13 @@ import { Droplets } from "lucide-react"
 import { useState } from "react"
 import { createIntakeLog, type IntakeLevel } from "@/actions/intake"
 import { toast } from "sonner"
+import { WaterWaveEffect } from "@/components/ui/water-wave-effect"
 
 
 
 export function IntakeRecorder() {
   const [isRecording, setIsRecording] = useState(false)
+  const [showAnimation, setShowAnimation] = useState(false)
 
   const handleRecord = async (level: IntakeLevel) => {
     setIsRecording(true)
@@ -21,6 +23,7 @@ export function IntakeRecorder() {
         console.error("Failed to record intake:", result.error);
         toast("기록에 실패했습니다.");
       } else {
+        setShowAnimation(true) // 애니메이션 트리거
         toast("물 섭취를 기록했습니다.");
       }
     } catch (e) {
@@ -75,6 +78,11 @@ export function IntakeRecorder() {
 
         <p className="text-sm text-muted-foreground text-center">버튼을 눌러 간편하게 기록하세요</p>
       </div>
+
+      <WaterWaveEffect
+        isVisible={showAnimation}
+        onComplete={() => setShowAnimation(false)}
+      />
     </Card>
   )
 }
